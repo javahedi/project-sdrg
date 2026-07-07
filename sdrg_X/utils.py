@@ -3,8 +3,6 @@
 import numpy as np
 
 
-
-
 def generate_positions(N, L):
     """Randomly place N spins on a chain of length L."""
     return np.sort(np.random.choice(L, size=N, replace=False))
@@ -18,5 +16,3 @@ def initial_couplings(positions, alpha):
             dist = abs(positions[i] - positions[j])
             J[(i, j)] = dist ** (-alpha)
     return J
-
-

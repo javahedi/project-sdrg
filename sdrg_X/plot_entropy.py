@@ -2,6 +2,7 @@ import json
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import quad
+import argparse
 
 
 
@@ -90,12 +91,13 @@ def S_analytic_finite_L(l_vals, L, T, alpha, Omega0=1.0, z_floor=1.0 + 1e-6):
     return np.array(S_th)
 
 
-
-
-
+parser = argparse.ArgumentParser(description="Plot SDRG-X entanglement entropy")
+parser.add_argument("data_folder", nargs="?", default="sdrgX_data_numba", help="Path to data folder")
+args = parser.parse_args()
+data_folder = args.data_folder
 
 # Load data
-with open("sdrgX_data_alpha3.0/S_l_all_T.json") as f:
+with open(f"{data_folder}/S_l_all_T.json") as f:
     data = json.load(f)
 
 L = data["L"]
